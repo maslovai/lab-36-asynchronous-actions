@@ -1,0 +1,13 @@
+.notesList{
+    margin-top:2em;
+    width:100%;
+    height: 20em;
+    border:solid, 0.5em, black;
+    background-color:lighten($myColor, 25%);
+    color: darken($myColor,30%);
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+}
