@@ -1,7 +1,6 @@
 import React from 'react';
-// import NoteForm from './note-form';
-import EditNote from './edit';
-
+import NoteForm from './note-form';
+// import * as actions from './actions';
 const renderIf = (test, component, alternative) => {
     return test ? component : alternative
 }
@@ -29,7 +28,8 @@ class NoteList extends React.Component{
    
     render() {
         return (
-            <div className="notesList">{ 
+            <div className="notesList">
+                 {
                     renderIf(
                         this.props.app.state.noteArray.length, 
                         <table>
@@ -41,16 +41,15 @@ class NoteList extends React.Component{
                             <tbody>
                                 {
                                     this.props.app.state.noteArray.map((note,i) =>
-                                        <tr key={i}>
+                                        <tr onDoubleClick={()=>this.handleUpdate(note)} key={i}>
                                             <td><a onClick={() => this.deleteNote(note.id)} data-key={note.id} href="#">x</a></td>
                                             <td>{note.content}</td>
-                                            {/* <EditNote handleUpdate={()=>this.handleUpdate()} note={note}/> */}
                                         </tr>
                                     )
                                 }
                             </tbody>
                         </table>,
-                        <h3> No Notes. Create one.</h3>
+                        <p>NO NOTES.CREATE ONE</p>
                     )
                 }
             </div>

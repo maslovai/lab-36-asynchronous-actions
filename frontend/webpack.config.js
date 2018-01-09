@@ -1,9 +1,26 @@
 'use strict';
 
+require('dotenv').config();
+
 const HTMLPlugin = require('html-webpack-plugin');
 const ExtractPlugin = require('extract-text-webpack-plugin');
+const {EnvironmentPlugin, DefinePlugin} = require('webpack');
 
+let production = process.env.NODE_ENV === "production";
+
+let plugins = [
+    new HTMLPlugin({
+        template: `${__dirname}/src/index.html`
+    }),
+    new ExtractPlugin('bundle.[hash].css'),
+    new EnvironmentPlugin(['NODE_ENV']),
+    new DefinePlugin({
+        '__API_URL__': JSON.stringify(process.env.API_URL),
+        '__DEBUG__': JSON.stringify(! production)
+    })
+];
 module.exports = {
+  plugins,
   devtool: 'source-map',
   
   entry: `${__dirname}/src/main.js`,
@@ -17,12 +34,6 @@ module.exports = {
     path: `${__dirname}/build`,
   },
     
-  plugins: [
-    new HTMLPlugin({
-      template: `${__dirname}/src/index.html`
-    }),
-    new ExtractPlugin('bundle.[hash].css'),
-  ],
     
   module: {
     rules: [
