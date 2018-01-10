@@ -25,7 +25,6 @@ class NoteForm extends React.Component {
         this.props.handler(this.state);
     }
 
-
     render() {
         return (
             <form className = 'noteForm' onSubmit={this.handleNewNote}>
@@ -34,8 +33,6 @@ class NoteForm extends React.Component {
             </form>
         )
     }
-
-
 }
 
 export default NoteForm;

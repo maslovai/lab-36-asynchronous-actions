@@ -1,5 +1,4 @@
 let reporter = store => next => action => {
-    
         try {
             let result = next(action);
             // console.log("__STATE__", store.getState());
@@ -10,8 +9,6 @@ let reporter = store => next => action => {
             console.log("__ACTION__", action);
             console.error("__ERROR__", error.message);
             return error;
-        }
-    
-    }
-    
-    export default reporter;
+        } 
+    }  
+export default reporter;

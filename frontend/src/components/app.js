@@ -1,69 +1,36 @@
-import './style/main.scss';
-
+import '../style/main.scss';
 import React from 'react';
-import ReactDom from 'react-dom';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom'
 
-import Header from './header';
-import Navbar from './navbar';
-import Home from './home';
-import NoteForm from './note-form';
-import Footer from './footer';
-import NoteList from './list';
+import Header from './header'
+import Footer from './footer'
+import Navbar from './navbar'
+import Home from './home'
 
-class App extends React.Component{
-    constructor(props) { 
+class App extends React.Component {
+
+    constructor(props) {
         super(props);
-        
-        this.state = {
-            noteArray:[],
-        }
-        this.app = this.app.bind(this);
-        this.updateNotes =this.updateNotes.bind(this);
-        this.deleteNote = this.deleteNote.bind(this);
-        this.updateOne = this.updateOne.bind(this)
-
-        console.log(React)
     }
 
-    componentDidMount() {
-        console.log("STATE::::::", this.state)
-    }
-
-    updateNotes(props) {
-        this.setState(currentState => ({noteArray: [...currentState.noteArray, props]}));
-        console.log('after new note pushed:', this.state);  
-
-    }
-
-    updateOne(props){
-        this.setState({noteArray:props})
-    }
-
-    deleteNote(props){
-        this.setState({noteArray:props});
-        console.log('after delete', this.state);
-    }
-
-    app(){
-        return {
-            state: this.state,
-            setState: this.setState.bind(this)
-        }
-    }
-
-    render(){
-        return(
-            <div>
-              <Header appTitle="React App"/>
-              <Navbar />
+    render() {
+        return (
+            <React.Fragment>
+                <Header appTitle="Front-Back" />
+                <Navbar />
                 <main>
-                    <Route exact path='/create' component={() => <NoteForm handler={this.updateNotes}/>} /> 
-                    <Route exact path='/' component={()=> <NoteList updateOne = {this.UpdateOne} handler = {this.deleteNote} app={this.app()} />} />
+                    <Route exact path='/' component={Home} />
+                    {/* <Route exact path='/note' component={ () => <NodeIterator /> } /> */}
+                    {/* <Route path='/' component={} /> */}
                 </main>
-              <Footer /> 
-            </div>   
+
+                <Footer>
+                    <p>&copy;2017 Iryna</p>
+                </Footer>
+
+            </React.Fragment>
         )
     }
 }
+
 export default App;
