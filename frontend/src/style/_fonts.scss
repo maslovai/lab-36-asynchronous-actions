@@ -1,0 +1,13 @@
+/* inika-regular - latin */
+@font-face {
+    font-family: 'Inika';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/inika/inika-v5-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Inika'),
+         url('../assets/fonts/inika/inika-v5-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../assets/fonts/inika/inika-v5-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../assets/fonts/inika/inika-v5-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('../assets/fonts/inika/inika-v5-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../assets/fonts/inika/inika-v5-latin-regular.svg#Inika') format('svg'); /* Legacy iOS */
+  }
