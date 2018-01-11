@@ -1,11 +1,12 @@
 import '../style/main.scss';
 import React from 'react';
-import {Route} from 'react-router-dom'
+import {Route} from 'react-router-dom';
 
-import Header from './header'
-import Footer from './footer'
-import Navbar from './navbar'
-import Home from './home'
+import Header from './header';
+import Footer from './footer';
+import Navbar from './navbar';
+import Home from './home';
+import Notes from './notes/notes-container';
 
 class App extends React.Component {
 
@@ -20,7 +21,7 @@ class App extends React.Component {
                 <Navbar />
                 <main>
                     <Route exact path='/' component={Home} />
-                    {/* <Route exact path='/note' component={ () => <NodeIterator /> } /> */}
+                    <Route exact path='/notes' component={ () => <Notes /> } />
                     {/* <Route path='/' component={} /> */}
                 </main>
 

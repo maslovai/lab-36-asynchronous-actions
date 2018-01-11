@@ -8,22 +8,23 @@ const renderIf = (test, component, alternative) => {
 class NoteList extends React.Component{
     constructor(props){
         super(props);
-        this.deleteNote = this.deleteNote.bind(this);
-        this.handleUpdate = this.handleUpdate.bind(this);
+        // this.state.noteArray = this.props.state.noteArray || [] ;
+        // this.deleteNote = this.deleteNote.bind(this);
+        // this.handleUpdate = this.handleUpdate.bind(this);
     }
 
-    deleteNote(id){
-        let notes = this.props.app.state.noteArray.filter((note,i) => {
-            return note.id !== id;
-        });
-        this.props.handler(notes); 
+    deleteNote(note){
+        // let notes = this.props.app.state.noteArray.filter((note,i) => {
+        //     return note.id !== id;
+        // });
+        this.props.deleteHandler(note); 
     }
     handleUpdate(noteReturned){
-    let id = e.target.dataset['key'];
-    let notes = this.props.app.state.noteArray.map((note,i) => {
-        return note.id === noteReturned.id ? note.content = noteReturned.content : note = note
-    })
-    this.props.updateOne(notes);
+    // let id = e.target.dataset['key'];
+    // let notes = this.props.app.state.noteArray.map((note,i) => {
+    //     return note.id === noteReturned.id ? note.content = noteReturned.content : note = note
+    // })
+    this.props.updateHandler(noteReturned);
     }
    
     render() {
@@ -31,7 +32,7 @@ class NoteList extends React.Component{
             <div className="notesList">
                  {
                     renderIf(
-                        this.props.app.state.noteArray.length, 
+                        this.props.noteArray.length, 
                         <table>
                             <thead>
                                 <tr>
@@ -40,9 +41,9 @@ class NoteList extends React.Component{
                             </thead>
                             <tbody>
                                 {
-                                    this.props.app.state.noteArray.map((note,i) =>
+                                    this.props.noteArray.map((note,i) =>
                                         <tr onDoubleClick={()=>this.handleUpdate(note)} key={i}>
-                                            <td><a onClick={() => this.deleteNote(note.id)} data-key={note.id} href="#">x</a></td>
+                                            <td><a onClick={() => this.deleteNote(note)} data-key={note.id} href="#">x</a></td>
                                             <td>{note.content}</td>
                                         </tr>
                                     )

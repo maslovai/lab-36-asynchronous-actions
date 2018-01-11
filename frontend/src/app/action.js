@@ -1,60 +1,60 @@
 import uuid from 'uuid/v1'
 import superagent from 'superagent';
 
-let API = `${__API_URL__}/todo`;
+// let API = `${__API_URL__}/note`;
 
-export const todoInitialize = () => dispatch => {
+// export const todoInitialize = () => dispatch => {
 
-    superagent.get(API)
-        .then(res => dispatch(initAction(res.body)) )
-        .catch(console.error);
+//     superagent.get(API)
+//         .then(res => dispatch(initAction(res.body)) )
+//         .catch(console.error);
 
-}
+// }
 
-export const todoCreate = payload => dispatch => {
+// export const todoCreate = payload => dispatch => {
 
-    // payload._id = uuid();
+//     // payload._id = uuid();
 
-    superagent.post(API)
-        .send(payload)
-        .then(res => dispatch(createAction(res.body)) )
-        .catch(console.error);
+//     superagent.post(API)
+//         .send(payload)
+//         .then(res => dispatch(createAction(res.body)) )
+//         .catch(console.error);
 
-};
+// };
 
-export const todoUpdate = payload => dispatch => {
+// export const todoUpdate = payload => dispatch => {
 
-    let URL = `${API}/${payload._id}`;
+//     let URL = `${API}/${payload._id}`;
 
-    superagent.put(URL)
-        .send(payload)
-        .then(res => dispatch(updateAction(res.body)) )
-        .catch(console.error);
+//     superagent.put(URL)
+//         .send(payload)
+//         .then(res => dispatch(updateAction(res.body)) )
+//         .catch(console.error);
 
-}
+// }
 
-export const todoDelete = payload => dispatch => {
+// export const todoDelete = payload => dispatch => {
 
-    dispatch( deleteAction(payload) );
+//     dispatch( deleteAction(payload) );
 
-}
+// }
 
-const initAction = list => ({
+export const noteInitialize = list => ({
    type: 'INIT',
    payload: list
 });
 
-const createAction = todo => ({
+export const noteCreate = note => ({
     type: 'CREATE',
-    payload: todo
+    payload: note   
 });
 
-const updateAction = todo => ({
+export const noteUpdate = note => ({
   type: 'UPDATE',
-  payload: todo
+  payload: note
 });
 
-const deleteAction = todo => ({
+export const noteDelete = note => ({
   type: 'DELETE',
-  payload: todo
+  payload: note
 });

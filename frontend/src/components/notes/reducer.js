@@ -7,9 +7,11 @@ export default (state=initialState, action) => {
   switch(type) {
 
     case 'INIT':
+        // console.log(state);
         return payload || initialState;
 
     case 'CREATE':
+        console.log(state);
         return [...state, payload];
 
     case 'UPDATE':

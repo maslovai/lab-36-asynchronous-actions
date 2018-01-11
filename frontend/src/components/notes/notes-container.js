@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import NoteForm from './note-form';
 import NoteList from './note-list';
 
-import * as actions from './actions';
+import * as actions from '../../app/action';
 
 class Notes extends React.Component {
 
@@ -12,16 +12,16 @@ class Notes extends React.Component {
         super(props);
     }
 
-    // componentWillMount() {
-    //     this.props.noteInitialize();
-    // }
+    componentWillMount() {
+        this.props.noteInitialize();
+    }
 
     render() {
 
         return (
             <React.Fragment>
                 <NoteForm handler={this.props.noteCreate} />
-                <NoteList noteList={this.props.todoList} updateHandler={this.props.noteUpdate} deleteHandler={this.props.noteDelete} />
+                <NoteList noteArray={this.props.noteArray} updateHandler={this.props.noteUpdate} deleteHandler={this.props.noteDelete} />
             </React.Fragment>
         )
 
@@ -31,15 +31,15 @@ class Notes extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		noteList: state.note
+		noteArray: state.note
 	}
 }
 
 const mapDispatchToProps = (dispatch, getState) => {
 	return {
-		noteCreate: noteItem => dispatch(actions.noteCreate(noteItem)),
-        noteUpdate: noteItem => dispatch(actions.noteUpdate(noteItem)),
-        noteDelete: noteItem => dispatch(actions.noteDelete(noteItem)),
+		noteCreate: note => dispatch(actions.noteCreate(note)),
+        noteUpdate: note => dispatch(actions.noteUpdate(note)),
+        noteDelete: note => dispatch(actions.noteDelete(note)),
         noteInitialize: () => dispatch(actions.noteInitialize()),
 	}
 }
