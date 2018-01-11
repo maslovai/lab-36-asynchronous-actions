@@ -1,26 +1,25 @@
 import uuid from 'uuid/v1'
 import superagent from 'superagent';
 
-// let API = `${__API_URL__}/note`;
+let API = `${__API_URL__}records`;
 
-// export const todoInitialize = () => dispatch => {
+export const noteInitialize = () => dispatch => {
 
-//     superagent.get(API)
-//         .then(res => dispatch(initAction(res.body)) )
-//         .catch(console.error);
+    superagent.get(API)
+        .then(res => dispatch(initAction(res.body)) )
+        .catch(console.error);
 
-// }
+}
 
-// export const todoCreate = payload => dispatch => {
+export const noteCreate = payload => dispatch => {
 
-//     // payload._id = uuid();
+    // payload._id = uuid();
+    superagent.post(API)
+        .send(payload)
+        .then(res => dispatch(createAction(res.body)) )
+        .catch(console.error);
 
-//     superagent.post(API)
-//         .send(payload)
-//         .then(res => dispatch(createAction(res.body)) )
-//         .catch(console.error);
-
-// };
+};
 
 // export const todoUpdate = payload => dispatch => {
 
@@ -39,12 +38,12 @@ import superagent from 'superagent';
 
 // }
 
-export const noteInitialize = list => ({
+const initAction = list => ({
    type: 'INIT',
    payload: list
 });
 
-export const noteCreate = note => ({
+const createAction = note => ({
     type: 'CREATE',
     payload: note   
 });

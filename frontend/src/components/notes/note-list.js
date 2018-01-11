@@ -19,12 +19,12 @@ class NoteList extends React.Component{
         // });
         this.props.deleteHandler(note); 
     }
-    handleUpdate(noteReturned){
+    handleUpdate(note){
     // let id = e.target.dataset['key'];
     // let notes = this.props.app.state.noteArray.map((note,i) => {
     //     return note.id === noteReturned.id ? note.content = noteReturned.content : note = note
     // })
-    this.props.updateHandler(noteReturned);
+    this.props.updateHandler(note);
     }
    
     render() {
