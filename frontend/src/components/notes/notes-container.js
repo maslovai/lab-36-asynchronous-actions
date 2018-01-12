@@ -24,9 +24,7 @@ class Notes extends React.Component {
                 <NoteList noteArray={this.props.noteArray} updateHandler={this.props.noteUpdate} deleteHandler={this.props.noteDelete} />
             </React.Fragment>
         )
-
     }
-
 }
 
 const mapStateToProps = (state) => {

@@ -43,7 +43,7 @@ class NoteList extends React.Component{
                                 {
                                     this.props.noteArray.map((note,i) =>
                                         <tr onDoubleClick={()=>this.handleUpdate(note)} key={i}>
-                                            <td><a onClick={() => this.deleteNote(note)} data-key={note.id} href="#">x</a></td>
+                                            <td><a onClick={() => this.props.deleteHandler(note)} data-key={note.id} href="#">x</a></td>
                                             <td>{note.content}</td>
                                         </tr>
                                     )

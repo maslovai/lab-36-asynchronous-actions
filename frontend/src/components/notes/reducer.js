@@ -7,18 +7,20 @@ export default (state=initialState, action) => {
   switch(type) {
 
     case 'INIT':
-        // console.log(state);
+        console.log("INIT");
         return payload || initialState;
 
     case 'CREATE':
-        console.log(state);
         return [...state, payload];
 
     case 'UPDATE':
         return state.map(note => note._id === payload._id ? payload : note);
 
     case 'DELETE':
-        return state.filter(note => note._id !== payload._id);
+        console.log('Reducer before delete. State, payload._id:::', state, payload._id);
+        let a = state.filter(note => note._id !== payload._id);
+        console.log('After delete::::::', a);
+        return a;
 
     case 'RESET':
         return initialState;
