@@ -10,7 +10,7 @@ export const noteInitialize = () => dispatch => {
         .then(res => {
             let arr = res.body;
             for (let i=0; i<arr.length; i++){
-                arr[i].content=arr[i]._id
+                arr[i].content=arr[i].antibiotic
                 arr[i].id = arr[i]._id
             }
             dispatch(initAction(arr))
@@ -18,12 +18,31 @@ export const noteInitialize = () => dispatch => {
         .catch(console.error);
 }
 
-export const noteDelete = (payload) => dispatch => {
+export const noteCreate = payload => dispatch=>{
+    superagent
+    .post(API)
+    .set({"Content-Type":"application/json"})
+    .send({"antibiotic":payload.content, "_id":payload._id})
+    .then(res => dispatch(createAction(payload)))
+    .catch(err => console.log(err))
+}
+
+export const noteDelete = payload => dispatch => {
     let deleteAPI = `${API}?id=${payload._id}`
     superagent
         .delete(deleteAPI)
-        .then(()=>{
+        .then(() => {
             dispatch(deleteAction(payload))
+        })
+        .catch(err=>console.log(err))
+}
+
+export const noteEdit = payload => dispatch => {
+    let editAPI = `${API}?id=${payload._id}`
+    superagent
+        .put(editAPI)
+        .then(()=>{
+            dispatch(updateAction(payload))
         })
         .catch(err=>console.log(err))
 }
@@ -38,7 +57,7 @@ const createAction = note => ({
     payload: note   
 });
 
-export const noteUpdate = note => ({
+const updateAction = note => ({
   type: 'UPDATE',
   payload: note
 });

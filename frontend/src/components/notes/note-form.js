@@ -8,7 +8,6 @@ class NoteForm extends React.Component {
         this.state = {
             id: uuid(),
             editing:false,
-            completed:false,
             content:''
         }
         this.handleChange = this.handleChange.bind(this);
