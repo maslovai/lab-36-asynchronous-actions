@@ -13,6 +13,15 @@ const app = module.exports = express();
 const MongoClient = promAll(mongodb.MongoClient);
 const connection = MongoClient.connectAsync('mongodb://localhost:27017/bacnet');
 
+app.use('*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Credentials',  true);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, HEAD');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+  next();
+});
+
 app.post('/api/records', bodyParser, (req, res) =>{
     connection.then(db => {
         const col = promAll(db.collection('records'));
@@ -35,7 +44,6 @@ app.get('/api/records', (req, res) => {
       .then(res.send.bind(res))
       .catch(err=> {console.log(err)})
       .catch(res => res.status(500).send('server error'));
-      // return db;
     })
     return db
   });

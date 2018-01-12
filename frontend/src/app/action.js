@@ -1,7 +1,7 @@
 import uuid from 'uuid/v1'
 import superagent from 'superagent';
 
-let API = `${__API_URL__}/records`;
+let API = `${process.env.API_URL}/records`;
 
 export const noteInitialize = () => dispatch => {
 
@@ -37,8 +37,9 @@ export const noteDelete = payload => dispatch => {
         .catch(err=>console.log(err))
 }
 
-export const noteEdit = payload => dispatch => {
+export const noteUpdate = payload => dispatch => {
     let editAPI = `${API}?id=${payload._id}`
+    console.log('in edit note:::::::', payload);
     superagent
         .put(editAPI)
         .then(()=>{

@@ -20,8 +20,7 @@ MongoClient.connectAsync('mongodb://localhost:27017/bacnet')
         let notesArray = notes.split('\n');
         for (let i=0; i<notesArray.length; i++){
             let recordData = notesArray[i].split(',');
-            let recordTemp = new Object({barcode:recordData[0],antibiotic:recordData[1],site:recordData[2],species:recordData[3],sex:recordData[4],
-                age:recordData[5], inout:recordData[6], recommended:recordData[7], resistance:recordData[8]});
+            let recordTemp = new Object({antibiotic:recordData[0]});
             let record = new Record(recordTemp);    
             notesArray[i]=record;
         }

@@ -1,5 +1,6 @@
 import React from 'react';
 import NoteForm from './note-form';
+import Note from './note';
 
 const renderIf = (test, component, alternative) => {
     return test ? component : alternative
@@ -27,6 +28,7 @@ render() {
                             <tr key={i}>
                                 <td><a onClick={() => this.props.deleteHandler(note)} href="#">x</a></td>
                                 <td onDoubleClick={()=>this.props.updateHandler(note)} >{note.content}</td>
+                                {/* <td ><Note note={note} updateHandler={this.props.updateHandler} /></td> */}
                             </tr>
                         )
                         }
